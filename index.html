@@ -79,7 +79,8 @@
 
   /* ---------- HERO (full-bleed, mantido) ---------- */
   #hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:130px 40px 96px}
-  .hero-photo{position:absolute;inset:-6%;z-index:0;background-image:url('img/equipe.jpg');background-size:cover;background-position:center 30%;transform:scale(1.06);animation:heroZoom 16s ease-out forwards;will-change:transform}
+  .hero-photo{position:absolute;inset:-6%;z-index:0;background-size:cover;background-position:center 30%;transform:scale(1.06);animation:heroZoom 16s ease-out forwards;will-change:transform,opacity;opacity:0;transition:opacity 1.6s ease}
+  .hero-photo.active{opacity:1}
   @keyframes heroZoom{to{transform:scale(1)}}
   .hero-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(5,13,24,.95) 0%,rgba(8,20,38,.82) 42%,rgba(10,26,47,.42) 72%,rgba(10,26,47,.26) 100%),linear-gradient(to top,rgba(5,13,24,.92) 0%,transparent 44%)}
   .hero-glow{position:absolute;border-radius:50%;pointer-events:none;z-index:2}
@@ -317,7 +318,8 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-photo" id="heroPhoto" role="img" aria-label="Equipe do escritório Bezerra, Queiroz & Santos Advocacia em Recife"></div>
+  <div class="hero-photo active" id="heroPhoto1" style="background-image:url('img/equipe.jpg')" role="img" aria-label="Equipe do escritório Bezerra, Queiroz & Santos Advocacia em Recife"></div>
+  <div class="hero-photo" id="heroPhoto2" style="background-image:url('img/equipe2.jpg')" aria-hidden="true"></div>
   <div class="hero-veil"></div>
   <div class="hero-glow g1"></div>
   <div class="hero-glow g2"></div>
@@ -415,7 +417,7 @@
 
     <!-- Previdenciário -->
     <div class="group" data-reveal>
-      <div class="group-title"><h3>Previdenciário</h3><span class="group-count">04 PROFISSIONAIS</span><span class="group-line"></span></div>
+      <div class="group-title"><h3>Previdenciário</h3><span class="group-count">05 PROFISSIONAIS</span><span class="group-line"></span></div>
       <div class="team-grid">
         <article class="member" data-cursor>
           <div class="member-media"><img src="img/joel.jpg" alt="Joel de Oliveira Bezerra Filho"></div>
@@ -432,6 +434,10 @@
         <article class="member" data-cursor>
           <div class="member-media"><img src="img/julia.jpg" alt="Júlia Queiroz de Freitas"></div>
           <div class="member-body"><h4>Júlia Queiroz de Freitas</h4><span class="oab">OAB/PE 54.363</span><p class="bio">Advogada da área previdenciária, atua na análise técnica de benefícios, na instrução de requerimentos e na defesa dos direitos dos segurados perante a Previdência Social.</p></div>
+        </article>
+        <article class="member" data-cursor>
+          <div class="member-media"><img src="img/simone.jpg" alt="Simone Maria da Silva"></div>
+          <div class="member-body"><h4>Simone Maria da Silva</h4><span class="oab">OAB/PE 30.039</span><p class="bio">Advogada da área previdenciária, atua na análise técnica de benefícios, na instrução de requerimentos e na defesa dos direitos dos segurados perante a Previdência Social.</p></div>
         </article>
       </div>
     </div>
@@ -453,12 +459,8 @@
 
     <!-- Comercial & Atendimento -->
     <div class="group" data-reveal>
-      <div class="group-title"><h3>Comercial &amp; Atendimento</h3><span class="group-count">02 PROFISSIONAIS</span><span class="group-line"></span></div>
+      <div class="group-title"><h3>Comercial &amp; Atendimento</h3><span class="group-count">01 PROFISSIONAL</span><span class="group-line"></span></div>
       <div class="team-grid">
-        <article class="member" data-cursor>
-          <div class="member-media"><img src="img/simone.jpg" alt="Simone Maria da Silva"></div>
-          <div class="member-body"><h4>Simone Maria da Silva</h4><span class="oab">OAB/PE 30.039</span><p class="bio">Advogada no setor comercial, atua no atendimento consultivo, na triagem das demandas e na orientação inicial dos clientes que buscam o escritório.</p></div>
-        </article>
         <article class="member" data-cursor>
           <div class="member-media"><img src="img/jessica.jpg" alt="Jéssica Maria da C. T. Nunes"></div>
           <div class="member-body"><h4>Jéssica Maria da C. T. Nunes</h4><span class="oab">SETOR COMERCIAL</span><p class="bio">Responsável pelo setor comercial e pelo primeiro atendimento. Conduz o relacionamento com o cliente, o agendamento de consultas e a organização da jornada inicial no escritório.</p></div>
@@ -697,12 +699,25 @@
     });
   }
 
+  /* hero photo loop (crossfade a cada 3s) */
+  (function(){
+    var slides=[document.getElementById('heroPhoto1'), document.getElementById('heroPhoto2')];
+    if(slides[0]&&slides[1]){
+      var cur=0;
+      setInterval(function(){
+        slides[cur].classList.remove('active');
+        cur=(cur+1)%slides.length;
+        slides[cur].classList.add('active');
+      }, 3000);
+    }
+  })();
+
   /* hero parallax */
   if(fine&&!reduce){
-    var photo=document.getElementById('heroPhoto'), hring=document.getElementById('heroRing');
+    var photos=document.querySelectorAll('.hero-photo'), hring=document.getElementById('heroRing');
     document.getElementById('hero').addEventListener('mousemove',function(e){
       var cx=e.clientX/innerWidth-.5, cy=e.clientY/innerHeight-.5;
-      photo.style.transform='scale(1.06) translate('+(cx*-16)+'px,'+(cy*-12)+'px)';
+      photos.forEach(function(p){ p.style.transform='scale(1.06) translate('+(cx*-16)+'px,'+(cy*-12)+'px)'; });
       hring.style.transform='translate('+(cx*28)+'px,'+(cy*22)+'px)';
     });
   }
