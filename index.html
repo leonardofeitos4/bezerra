@@ -79,17 +79,16 @@
 
   /* ---------- HERO (full-bleed, mantido) ---------- */
   #hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:130px 40px 96px}
-  .hero-slide{position:absolute;inset:-6%;z-index:0;transition:transform 1.1s cubic-bezier(.65,0,.35,1);will-change:transform}
-  .hero-slide.is-active{transform:translateX(0)}
-  .hero-slide.is-next{transform:translateX(100%)}
-  .hero-slide.is-prev{transform:translateX(-100%)}
+  .hero-slide{position:absolute;inset:-6%;z-index:0;opacity:0;transition:transform 1.8s cubic-bezier(.65,0,.35,1),opacity 1.8s ease;will-change:transform,opacity}
+  .hero-slide.is-active{transform:translateX(0);opacity:1}
+  .hero-slide.is-next{transform:translateX(100%);opacity:0}
+  .hero-slide.is-prev{transform:translateX(-100%);opacity:0}
   .hero-photo{position:absolute;inset:0;background-size:cover;background-position:center 30%;transform:scale(var(--zoom,1.06));animation:heroZoom 16s ease-out forwards;will-change:transform}
   @keyframes heroZoom{to{transform:scale(var(--zoom-end,1))}}
   .hero-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(5,13,24,.95) 0%,rgba(8,20,38,.82) 42%,rgba(10,26,47,.42) 72%,rgba(10,26,47,.26) 100%),linear-gradient(to top,rgba(5,13,24,.92) 0%,transparent 44%)}
   .hero-glow{position:absolute;border-radius:50%;pointer-events:none;z-index:2}
   .hero-glow.g1{top:-220px;right:-220px;width:640px;height:640px;background:radial-gradient(circle,rgba(200,165,92,.13),transparent 65%)}
   .hero-glow.g2{bottom:-260px;left:-260px;width:560px;height:560px;background:radial-gradient(circle,rgba(200,165,92,.06),transparent 65%)}
-  .hero-ring{position:absolute;top:14%;left:52%;width:220px;height:220px;border-radius:50%;border:1px solid rgba(200,165,92,.1);pointer-events:none;z-index:2}
   .hero-inner{position:relative;z-index:5;max-width:1320px;margin:0 auto;width:100%}
   .hero-copy{max-width:680px}
   h1.hero-h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(50px,5.6vw,86px);line-height:1;letter-spacing:-.5px;color:var(--cream);margin-bottom:32px;text-shadow:0 2px 30px rgba(0,0,0,.5)}
@@ -330,7 +329,6 @@
   <div class="hero-veil"></div>
   <div class="hero-glow g1"></div>
   <div class="hero-glow g2"></div>
-  <div class="hero-ring" id="heroRing"></div>
 
   <div class="hero-inner">
     <div class="hero-copy">
@@ -435,31 +433,35 @@
           <div class="member-body"><h4>Christiane Laís A. Santos Morais</h4><span class="oab">OAB/PE 33.860</span><p class="bio">Advogada com atuação diretamente ligada ao setor previdenciário. Conduz casos administrativos junto ao INSS e o suporte nas etapas de concessão e revisão de benefícios.</p></div>
         </article>
         <article class="member" data-cursor>
-          <div class="member-media"><img src="img/leticia.jpg" alt="Letícia Cunha Ximenes"></div>
-          <div class="member-body"><h4>Letícia Cunha Ximenes</h4><span class="oab">OAB/PE 65.357</span><p class="bio">Advogada dedicada ao Direito Previdenciário, com atuação no acompanhamento de processos administrativos e judiciais junto ao INSS e no suporte à concessão e revisão de benefícios.</p></div>
-        </article>
-        <article class="member" data-cursor>
           <div class="member-media"><img src="img/julia.jpg" alt="Júlia Queiroz de Freitas"></div>
           <div class="member-body"><h4>Júlia Queiroz de Freitas</h4><span class="oab">OAB/PE 54.363</span><p class="bio">Advogada da área previdenciária, atua na análise técnica de benefícios, na instrução de requerimentos e na defesa dos direitos dos segurados perante a Previdência Social.</p></div>
+        </article>
+        <article class="member" data-cursor>
+          <div class="member-media"><img src="img/leticia.jpg" alt="Letícia Cunha Ximenes"></div>
+          <div class="member-body"><h4>Letícia Cunha Ximenes</h4><span class="oab">OAB/PE 65.357</span><p class="bio">Advogada dedicada ao Direito Previdenciário, com atuação no acompanhamento de processos administrativos e judiciais junto ao INSS e no suporte à concessão e revisão de benefícios.</p></div>
         </article>
       </div>
     </div>
 
     <!-- Cível, Trabalhista & Tributário -->
     <div class="group" data-reveal>
-      <div class="group-title"><h3>Cível, Trabalhista &amp; Tributário</h3><span class="group-count">03 PROFISSIONAIS</span><span class="group-line"></span></div>
+      <div class="group-title"><h3>Cível, Trabalhista &amp; Tributário</h3><span class="group-count">04 PROFISSIONAIS</span><span class="group-line"></span></div>
       <div class="team-grid">
         <article class="member" data-cursor>
-          <div class="member-media"><div class="member-mono"><span>AS</span></div></div>
-          <div class="member-body"><h4>Aloizio Bernardino dos Santos</h4><span class="oab">OAB/PE 36.343</span><p class="bio">Sócio do escritório com atuação consolidada no contencioso cível e consultivo. Conduz causas de média e alta complexidade com acompanhamento processual estratégico.</p></div>
+          <div class="member-media"><img src="img/aloizio.jpg" alt="Aloizio Bernardino dos Santos"></div>
+          <div class="member-body"><h4>Aloizio Bernardino dos Santos</h4><span class="oab">OAB/PE 36.343</span><p class="bio">Sócio do escritório com atuação consolidada no contencioso cível e consultivo. Conduz causas de média e alta complexidade com experiência em acompanhamento processual estratégico.</p></div>
         </article>
         <article class="member" data-cursor>
-          <div class="member-media"><div class="member-mono"><span>CC</span></div></div>
-          <div class="member-body"><h4>Camila Jerônimo de Araújo Cajui</h4><span class="oab">OAB/PE 42.045</span><p class="bio">Advogada com atuação em Direito do Trabalho, Direito Civil e Direito do Consumidor. Representa clientes em reclamações trabalhistas, ações cíveis e demandas consumeristas.</p></div>
+          <div class="member-media"><img src="img/camila.jpg" alt="Camila Jerônimo de Araújo Cajui"></div>
+          <div class="member-body"><h4>Camila Jerônimo de Araújo Cajui</h4><span class="oab">OAB/PE 42.045</span><p class="bio">Advogada com atuação em Direito do Trabalho, Direito Civil e Direito do Consumidor. Representa clientes em reclamações trabalhistas, ações cíveis e demandas consumeristas com foco na defesa dos direitos individuais.</p></div>
         </article>
         <article class="member" data-cursor>
           <div class="member-media"><img src="img/simone.jpg" alt="Simone Maria da Silva"></div>
           <div class="member-body"><h4>Simone Maria da Silva</h4><span class="oab">OAB/PE 30.039</span><p class="bio">Advogada com atuação em Direito Civil, Trabalhista e Tributário, conduzindo o contencioso e o suporte consultivo dessas áreas junto aos clientes do escritório.</p></div>
+        </article>
+        <article class="member" data-cursor>
+          <div class="member-media"><img src="img/samara.jpeg" alt="Samara Háris Correia Tavares Cortial" style="object-position:15% top"></div>
+          <div class="member-body"><h4>Samara Háris Correia Tavares Cortial</h4></div>
         </article>
       </div>
     </div>
@@ -732,14 +734,13 @@
 
   /* hero parallax */
   if(fine&&!reduce){
-    var photos=document.querySelectorAll('.hero-photo'), hring=document.getElementById('heroRing');
+    var photos=document.querySelectorAll('.hero-photo');
     document.getElementById('hero').addEventListener('mousemove',function(e){
       var cx=e.clientX/innerWidth-.5, cy=e.clientY/innerHeight-.5;
       photos.forEach(function(p){
         var base=parseFloat(getComputedStyle(p).getPropertyValue('--zoom'))||1.06;
         p.style.transform='scale('+base+') translate('+(cx*-16)+'px,'+(cy*-12)+'px)';
       });
-      hring.style.transform='translate('+(cx*28)+'px,'+(cy*22)+'px)';
     });
   }
 
